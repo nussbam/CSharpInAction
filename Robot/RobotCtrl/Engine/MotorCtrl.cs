@@ -158,7 +158,12 @@ namespace RobotCtrl
         /// </summary>
         public virtual float Distance
         {
-            get { throw new NotImplementedException("ToDo"); }
+            get {
+                //0.238761 = Distanz in m pro voller Radumdrehung
+                //28672 = Ticks notwendig für volle Radumdrehung 
+                return 0.238761f * Ticks / 28672;
+
+            }
         }
 
 
