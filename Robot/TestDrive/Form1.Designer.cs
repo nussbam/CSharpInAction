@@ -91,7 +91,7 @@ namespace TestDrive
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1170, 455);
+            this.ClientSize = new System.Drawing.Size(1170, 566);
             this.Controls.Add(this.runArc);
             this.Controls.Add(this.runTurn);
             this.Controls.Add(this.runLine);
