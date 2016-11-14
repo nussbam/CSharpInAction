@@ -32,50 +32,22 @@ namespace Testat
         private void InitializeComponent()
         {
             this.mainMenu1 = new System.Windows.Forms.MainMenu();
-            this.commonRunParameters = new RobotView.CommonRunParameters();
-            this.driveView = new RobotView.DriveView();
-            this.runLine = new RobotView.RunLine();
-            this.runTurn = new RobotView.RunTurn();
-            this.runArc = new RobotView.RunArc();
             this.console = new RobotView.ConsoleView();
+            this.runArc = new RobotView.RunArc();
+            this.runTurn = new RobotView.RunTurn();
+            this.runLine = new RobotView.RunLine();
+            this.driveView = new RobotView.DriveView();
+            this.commonRunParameters = new RobotView.CommonRunParameters();
             this.SuspendLayout();
             // 
-            // commonRunParameters
+            // console
             // 
-            this.commonRunParameters.Acceleration = 0.3F;
-            this.commonRunParameters.Location = new System.Drawing.Point(4, 4);
-            this.commonRunParameters.Name = "commonRunParameters";
-            this.commonRunParameters.Size = new System.Drawing.Size(452, 126);
-            this.commonRunParameters.Speed = 0.5F;
-            this.commonRunParameters.TabIndex = 5;
-            // 
-            // driveView
-            // 
-            this.driveView.Drive = null;
-            this.driveView.Location = new System.Drawing.Point(4, 134);
-            this.driveView.Name = "driveView";
-            this.driveView.Size = new System.Drawing.Size(438, 434);
-            this.driveView.TabIndex = 4;
-            // 
-            // runLine
-            // 
-            this.runLine.Acceleration = 0F;
-            this.runLine.Drive = null;
-            this.runLine.Location = new System.Drawing.Point(481, 257);
-            this.runLine.Name = "runLine";
-            this.runLine.Size = new System.Drawing.Size(454, 71);
-            this.runLine.Speed = 0F;
-            this.runLine.TabIndex = 3;
-            // 
-            // runTurn
-            // 
-            this.runTurn.Acceleration = 0F;
-            this.runTurn.Drive = null;
-            this.runTurn.Location = new System.Drawing.Point(481, 178);
-            this.runTurn.Name = "runTurn";
-            this.runTurn.Size = new System.Drawing.Size(455, 71);
-            this.runTurn.Speed = 0F;
-            this.runTurn.TabIndex = 2;
+            this.console.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.console.Location = new System.Drawing.Point(481, 333);
+            this.console.Name = "console";
+            this.console.RobotConsole = null;
+            this.console.Size = new System.Drawing.Size(206, 47);
+            this.console.TabIndex = 6;
             // 
             // runArc
             // 
@@ -87,21 +59,49 @@ namespace Testat
             this.runArc.Speed = 0F;
             this.runArc.TabIndex = 1;
             // 
-            // console
+            // runTurn
             // 
-            this.console.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.console.Location = new System.Drawing.Point(535, 411);
-            this.console.Name = "console";
-            this.console.RobotConsole = null;
-            this.console.Size = new System.Drawing.Size(206, 47);
-            this.console.TabIndex = 6;
+            this.runTurn.Acceleration = 0F;
+            this.runTurn.Drive = null;
+            this.runTurn.Location = new System.Drawing.Point(481, 178);
+            this.runTurn.Name = "runTurn";
+            this.runTurn.Size = new System.Drawing.Size(455, 71);
+            this.runTurn.Speed = 0F;
+            this.runTurn.TabIndex = 2;
+            // 
+            // runLine
+            // 
+            this.runLine.Acceleration = 0F;
+            this.runLine.Drive = null;
+            this.runLine.Location = new System.Drawing.Point(481, 257);
+            this.runLine.Name = "runLine";
+            this.runLine.Size = new System.Drawing.Size(454, 71);
+            this.runLine.Speed = 0F;
+            this.runLine.TabIndex = 3;
+            // 
+            // driveView
+            // 
+            this.driveView.Drive = null;
+            this.driveView.Location = new System.Drawing.Point(4, 134);
+            this.driveView.Name = "driveView";
+            this.driveView.Size = new System.Drawing.Size(438, 434);
+            this.driveView.TabIndex = 4;
+            // 
+            // commonRunParameters
+            // 
+            this.commonRunParameters.Acceleration = 0.3F;
+            this.commonRunParameters.Location = new System.Drawing.Point(4, 4);
+            this.commonRunParameters.Name = "commonRunParameters";
+            this.commonRunParameters.Size = new System.Drawing.Size(452, 126);
+            this.commonRunParameters.Speed = 0.5F;
+            this.commonRunParameters.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1170, 566);
+            this.ClientSize = new System.Drawing.Size(883, 517);
             this.Controls.Add(this.console);
             this.Controls.Add(this.runArc);
             this.Controls.Add(this.runTurn);
