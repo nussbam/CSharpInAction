@@ -19,6 +19,7 @@ namespace Testat
             commonRunParameters.AccelerationChanged += AccelerationChanged;
 
             var drive = new Drive {Power = true};
+            driveView.Drive = drive;
             runLine.Drive = drive;
             runTurn.Drive = drive;
             runArc.Drive = drive;

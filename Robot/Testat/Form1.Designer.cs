@@ -82,7 +82,7 @@ namespace Testat
             // driveView
             // 
             this.driveView.Drive = null;
-            this.driveView.Location = new System.Drawing.Point(4, 134);
+            this.driveView.Location = new System.Drawing.Point(0, 101);
             this.driveView.Name = "driveView";
             this.driveView.Size = new System.Drawing.Size(438, 434);
             this.driveView.TabIndex = 4;
@@ -101,7 +101,7 @@ namespace Testat
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(883, 517);
+            this.ClientSize = new System.Drawing.Size(883, 483);
             this.Controls.Add(this.console);
             this.Controls.Add(this.runArc);
             this.Controls.Add(this.runTurn);
