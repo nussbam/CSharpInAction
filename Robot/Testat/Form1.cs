@@ -12,10 +12,22 @@ namespace Testat
 {
     public partial class Form1 : Form
     {
-        Drive drive;
+        private Drive drive;
+        private RobotConsole rc;
         public Form1()
         {
             InitializeComponent();
+
+            // init robot console
+            rc = new RobotConsole();
+            console.RobotConsole = rc;
+            (rc[Switches.Switch1]).SwitchStateChanged += (o, e) => (rc[Leds.Led1]).LedEnabled = (rc[Switches.Switch1]).SwitchEnabled;
+            (rc[Switches.Switch2]).SwitchStateChanged += (o, e) => (rc[Leds.Led2]).LedEnabled = (rc[Switches.Switch2]).SwitchEnabled;
+            (rc[Switches.Switch3]).SwitchStateChanged += (o, e) => (rc[Leds.Led3]).LedEnabled = (rc[Switches.Switch3]).SwitchEnabled;
+            (rc[Switches.Switch4]).SwitchStateChanged += (o, e) => (rc[Leds.Led4]).LedEnabled = (rc[Switches.Switch4]).SwitchEnabled;
+
+
+            // init drive
             commonRunParameters.SpeedChanged += new EventHandler(SpeedChanged);
             commonRunParameters.AccelerationChanged += new EventHandler(AccelerationChanged);
 
@@ -42,7 +54,5 @@ namespace Testat
             runTurn.Speed = commonRunParameters.Speed;
             runArc.Speed = commonRunParameters.Speed;
         }
-
-
     }
 }

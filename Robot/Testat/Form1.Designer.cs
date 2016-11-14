@@ -37,6 +37,7 @@ namespace Testat
             this.runLine = new RobotView.RunLine();
             this.runTurn = new RobotView.RunTurn();
             this.runArc = new RobotView.RunArc();
+            this.console = new RobotView.ConsoleView();
             this.SuspendLayout();
             // 
             // commonRunParameters
@@ -86,12 +87,22 @@ namespace Testat
             this.runArc.Speed = 0F;
             this.runArc.TabIndex = 1;
             // 
+            // console
+            // 
+            this.console.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.console.Location = new System.Drawing.Point(535, 411);
+            this.console.Name = "console";
+            this.console.RobotConsole = null;
+            this.console.Size = new System.Drawing.Size(206, 47);
+            this.console.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1170, 566);
+            this.Controls.Add(this.console);
             this.Controls.Add(this.runArc);
             this.Controls.Add(this.runTurn);
             this.Controls.Add(this.runLine);
@@ -112,6 +123,7 @@ namespace Testat
         private RunLine runLine;
         private RunTurn runTurn;
         private RunArc runArc;
+        private ConsoleView console;
     }
 }
 
