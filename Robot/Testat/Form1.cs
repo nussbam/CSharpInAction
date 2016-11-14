@@ -7,6 +7,7 @@ namespace Testat
     public partial class Form1 : Form
     {
         private RobotConsole rc;
+        private Drive drive;
 
         public Form1()
         {
@@ -18,7 +19,7 @@ namespace Testat
             commonRunParameters.SpeedChanged += SpeedChanged;
             commonRunParameters.AccelerationChanged += AccelerationChanged;
 
-            var drive = new Drive {Power = true};
+            drive = new Drive {Power = true};
             driveView.Drive = drive;
             runLine.Drive = drive;
             runTurn.Drive = drive;
@@ -54,6 +55,14 @@ namespace Testat
                 (_, __) => rc[Leds.Led3].LedEnabled = rc[Switches.Switch3].SwitchEnabled;
             rc[Switches.Switch4].SwitchStateChanged +=
                 (_, __) => rc[Leds.Led4].LedEnabled = rc[Switches.Switch4].SwitchEnabled;
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            drive.Halt();
+        }
+
+        private void btnStop_Click(object sender, EventArgs e) {
+            drive.Stop();
         }
     }
 }
