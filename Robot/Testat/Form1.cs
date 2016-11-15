@@ -64,5 +64,62 @@ namespace Testat
         private void btnStop_Click(object sender, EventArgs e) {
             drive.Stop();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            NumKeyboard nk = new NumKeyboard();
+            if (nk.ShowDialog() == DialogResult.OK)
+            {
+                commonRunParameters.Speed = (float) nk.getWert() / 1000; //Speed
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            NumKeyboard nk = new NumKeyboard();
+            if (nk.ShowDialog() == DialogResult.OK)
+            {
+                commonRunParameters.Acceleration = (float) nk.getWert() / 1000; //Acceleration
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            NumKeyboard nk = new NumKeyboard();
+            if (nk.ShowDialog() == DialogResult.OK)
+            {
+                runArc.Acceleration = (float) nk.getWert() / 1000; //Radius
+            }
+            
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            NumKeyboard nk = new NumKeyboard();
+            if (nk.ShowDialog() == DialogResult.OK)
+            {
+                runArc.Speed = (float) nk.getWert() / 1000; //AngelRunArc
+            }
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            NumKeyboard nk = new NumKeyboard();
+            if (nk.ShowDialog() == DialogResult.OK)
+            {
+                runTurn.Speed = (float) nk.getWert() / 1000; //AngelRunTurn
+            }
+            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            NumKeyboard nk = new NumKeyboard();
+            if (nk.ShowDialog() == DialogResult.OK)
+            {
+                runLine.Acceleration = (float) nk.getWert() / 1000; //LengthRunLine
+            }
+        }
     }
 }

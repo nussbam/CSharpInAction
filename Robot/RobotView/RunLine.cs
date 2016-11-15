@@ -14,7 +14,7 @@ namespace RobotView
     {
         public Drive Drive { get; set; }
         public float Speed { get; set; }
-        public float Acceleration { get; set;  }
+        public float Acceleration { get { return (float)length.Value / 1000; } set { length.Value = (decimal)value * 1000; } }
 
         public RunLine()
         {

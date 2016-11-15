@@ -25,6 +25,11 @@ namespace Testat
             return (text == "" || text == "-") ? text = "0" : text;
         }
 
+        public Int32 getWert()
+        {
+            return Int32.Parse(checkString(textBox1.Text));
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             textBox1.Text = escZero(textBox1.Text += "1");
@@ -91,7 +96,7 @@ namespace Testat
 
         private void button11_Click(object sender, EventArgs e)
         {
-            textBox1.Text = textBox1.Text.Length > 0 ? textBox1.Text.Remove(textBox1.Text.Length - 1) : textBox1.Text;
+            textBox1.Text = textBox1.Text.Length > 0 ? textBox1.Text.Remove(textBox1.Text.Length - 1, 1) : textBox1.Text;
             textBox1.Text = textBox1.Text == "-" ? "0" : textBox1.Text;
             textBox1.Text = textBox1.Text == "" ? "0" : textBox1.Text;
         }

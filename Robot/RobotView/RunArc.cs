@@ -13,8 +13,8 @@ namespace RobotView
     public partial class RunArc : UserControl
     {
         public Drive Drive { get; set; }
-        public float Speed { get; set; }
-        public float Acceleration { get; set; }
+        public float Speed { get { return (float) angle.Value / 1000; } set { angle.Value = (decimal)value * 1000;} }
+        public float Acceleration { get { return (float)radius.Value / 1000; } set { radius.Value = (decimal)value * 1000; }}
 
         public RunArc()
         {
