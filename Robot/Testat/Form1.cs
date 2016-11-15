@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using RobotCtrl;
+using System.Threading;
 
 namespace Testat
 {
@@ -8,6 +9,7 @@ namespace Testat
     {
         private RobotConsole rc;
         private Drive drive;
+        Robot robot;
 
         public Form1()
         {
@@ -19,7 +21,10 @@ namespace Testat
             commonRunParameters.SpeedChanged += SpeedChanged;
             commonRunParameters.AccelerationChanged += AccelerationChanged;
 
-            drive = new Drive {Power = true};
+            robot = new Robot();
+            drive = robot.Drive;
+            drive.Power = true;
+            //drive = new Drive {Power = true};
             driveView.Drive = drive;
             runLine.Drive = drive;
             runTurn.Drive = drive;
@@ -27,6 +32,11 @@ namespace Testat
 
             SpeedChanged(null, EventArgs.Empty);
             AccelerationChanged(null, EventArgs.Empty);
+
+            
+            Thread starterThread = new Thread(checkRadar);
+            starterThread.Start();
+            
         }
 
         private void AccelerationChanged(object sender, EventArgs e)
@@ -121,5 +131,18 @@ namespace Testat
                 runLine.Acceleration = (float) nk.getWert() / 1000; //LengthRunLine
             }
         }
+
+        private void checkRadar()
+        {
+            while (true)
+            {
+                if (robot.Radar.Distance < 0.2f)
+                {
+                    drive.Stop();
+                }
+                Thread.Sleep(100);
+            }
+        }
+
     }
 }
