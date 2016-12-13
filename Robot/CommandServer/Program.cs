@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RobotCtrl;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace CommandServer
 {
     class Program
     {
+        
+  
         static void Main(string[] args)
         {
             Console.WriteLine("Start");
@@ -16,8 +19,10 @@ namespace CommandServer
             listener.Start();
             while (true)
             {
+                //File.Delete("result.txt");
+
                 using (var client = listener.AcceptTcpClient())
-                using (var stream = client.GetStream())
+                using (var stream = client.GetStream())    
                 using (var output = File.Create("result.txt"))
                 {
                     Console.WriteLine("Client connected. Starting to receive the file");
@@ -29,20 +34,60 @@ namespace CommandServer
                     {
                         output.Write(buffer, 0, bytesRead);
                     }
-                    driveExecute(output);
+
                 }
-               
+                driveExecute();
+
             }
             
         }
-        public static void driveExecute(FileStream instructions)
+        public static void driveExecute()
         {
+
+            var instructions = File.OpenRead("result.txt");
             String lineOfText;
             var file = new System.IO.StreamReader(instructions, System.Text.Encoding.UTF8, true, 128);
             while ((lineOfText = file.ReadLine()) != null)
             {
+                parseStatement(lineOfText);
                 Console.WriteLine(lineOfText);
             }
         }
+
+        public static void parseStatement(String statement)
+        {
+            
+        Robot roboter = new Robot();
+
+        char delimenter = ' ';
+            String[] part = statement.Split(delimenter);
+             switch (part[0])
+            {
+                case "TrackLine":
+                    roboter.Drive.RunLine(float.Parse((part[1])), 2, 2);
+                    break;
+                case "TrackTurnLeft":
+                        Console.WriteLine("Case 2");
+                break;
+                case "TrackTurnRight":
+                        Console.WriteLine("Case 1");
+                break;
+                case "TrackArcLeft":
+                            Console.WriteLine("Case 1");
+                break;
+                case "TrackArcRight":
+                                Console.WriteLine("Case 1");
+                break;
+                case "Start":
+                    Console.WriteLine("Case 1");
+                    break;
+
+                default:
+                    Console.WriteLine("Default case");
+                    break;
+            }
+
+        }
+
     }
 }
