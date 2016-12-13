@@ -23,8 +23,10 @@ namespace CommandClient
         {
             // Establish the local endpoint for the socket.
             IPHostEntry ipHost = Dns.GetHostEntry(Dns.GetHostName());
-            IPAddress ipAddr = ipHost.AddressList[0];
-            IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, 11000);
+            
+            IPAddress ipAddr;
+            IPAddress.TryParse("192.168.1.15", out ipAddr);
+            IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, 8080);
 
             // Create a TCP socket.
             Socket client = new Socket(AddressFamily.InterNetwork,

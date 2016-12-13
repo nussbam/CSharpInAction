@@ -29,10 +29,20 @@ namespace CommandServer
                     {
                         output.Write(buffer, 0, bytesRead);
                     }
+                    driveExecute(output);
                 }
                
             }
             
+        }
+        public static void driveExecute(FileStream instructions)
+        {
+            String lineOfText;
+            var file = new System.IO.StreamReader(instructions, System.Text.Encoding.UTF8, true, 128);
+            while ((lineOfText = file.ReadLine()) != null)
+            {
+                Console.WriteLine(lineOfText);
+            }
         }
     }
 }
