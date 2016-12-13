@@ -12,7 +12,7 @@ namespace CommandServer
         static void Main(string[] args)
         {
             Console.WriteLine("Start");
-            var listener = new TcpListener(IPAddress.Loopback, 11000);
+            var listener = new TcpListener(IPAddress.Parse("192.168.1.15"), 8080);
             listener.Start();
             while (true)
             {
