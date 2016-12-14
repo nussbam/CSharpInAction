@@ -11,7 +11,6 @@ namespace CommandServer
     class Program
     {
         
-  
         static void Main(string[] args)
         {
             Console.WriteLine("Start");
@@ -60,13 +59,14 @@ namespace CommandServer
         Robot robot = new Robot();
             float speed = 0.5f;
             float acceleration = 0.3f;
+            robot.Drive.Power = true;
 
         char delimenter = ' ';
             String[] part = statement.Split(delimenter);
              switch (part[0])
             {
                 case "TrackLine":
-                    robot.Drive.RunLine(float.Parse((part[1])), speed, acceleration);
+                    roboter.Drive.RunLine(float.Parse((part[1])), 2, 2);
                     break;
                 case "TrackTurnLeft":
                     robot.Drive.RunTurn(float.Parse((part[1])), speed, acceleration);
