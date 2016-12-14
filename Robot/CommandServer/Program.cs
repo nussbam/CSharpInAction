@@ -57,27 +57,29 @@ namespace CommandServer
         public static void parseStatement(String statement)
         {
             
-        Robot roboter = new Robot();
+        Robot robot = new Robot();
+            float speed = 0.5f;
+            float acceleration = 0.3f;
 
         char delimenter = ' ';
             String[] part = statement.Split(delimenter);
              switch (part[0])
             {
                 case "TrackLine":
-                    roboter.Drive.RunLine(float.Parse((part[1])), 2, 2);
+                    robot.Drive.RunLine(float.Parse((part[1])), speed, acceleration);
                     break;
                 case "TrackTurnLeft":
-                        Console.WriteLine("Case 2");
-                break;
+                    robot.Drive.RunTurn(float.Parse((part[1])), speed, acceleration);
+                    break;
                 case "TrackTurnRight":
-                        Console.WriteLine("Case 1");
-                break;
+                    robot.Drive.RunTurn(float.Parse((part[1]))*-1, speed, acceleration);
+                    break;
                 case "TrackArcLeft":
-                            Console.WriteLine("Case 1");
+                    robot.Drive.RunArcLeft(float.Parse((part[1])), float.Parse((part[1])), speed, acceleration);
                 break;
                 case "TrackArcRight":
-                                Console.WriteLine("Case 1");
-                break;
+                    robot.Drive.RunArcRight(float.Parse((part[1])), float.Parse((part[1])), speed, acceleration);
+                    break;
                 case "Start":
                     Console.WriteLine("Case 1");
                     break;
