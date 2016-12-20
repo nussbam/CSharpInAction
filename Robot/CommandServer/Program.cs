@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
+
 namespace CommandServer
 {
     class Program
@@ -15,7 +17,14 @@ namespace CommandServer
         {
             Console.WriteLine("Start");
             var listener = new TcpListener(IPAddress.Parse("192.168.1.15"), 8080);
+            HttpServer server = new HttpServer(IPAddress.Parse("192.168.1.15"), 80);
+            
             listener.Start();
+            
+            Thread workerThread = new Thread(server.Serve);
+            workerThread.Start();
+            
+                
             while (true)
             {
                 //File.Delete("result.txt");
@@ -35,38 +44,56 @@ namespace CommandServer
                     }
 
                 }
-                driveExecute();
+                driveExecute(server);
 
             }
             
         }
-        public static void driveExecute()
+        public static void driveExecute(HttpServer server)
         {
-
+            Robot robot = new Robot();
+            
+            robot.Drive.Power = true;
+            string header = @"<html>
+                <head>
+                    <title> HTTP-Seite Mumi, Marc, Robin </title>
+                </head>
+                <body>
+                <h1>Testat 2 - Mumi, Marc, Robin</h1>
+                        ";
+            string content = "";
+            string footer = @"</body>
+                </html>";
             var instructions = File.OpenRead("result.txt");
             String lineOfText;
+            
             var file = new System.IO.StreamReader(instructions, System.Text.Encoding.UTF8, true, 128);
             while ((lineOfText = file.ReadLine()) != null)
             {
-                parseStatement(lineOfText);
+                while (!robot.Drive.Done)
+                {
+                    Thread.Sleep(100);
+                }
+                parseStatement(lineOfText, robot);
+                content = content + @"<br />" + lineOfText;
+                server.content = header + content + footer;
                 Console.WriteLine(lineOfText);
             }
         }
 
-        public static void parseStatement(String statement)
+        public static void parseStatement(String statement, Robot robot)
         {
-            
-        Robot robot = new Robot();
             float speed = 0.5f;
             float acceleration = 0.3f;
-            robot.Drive.Power = true;
 
-        char delimenter = ' ';
+
+            char delimenter = ' ';
             String[] part = statement.Split(delimenter);
              switch (part[0])
             {
                 case "TrackLine":
-                    roboter.Drive.RunLine(float.Parse((part[1])), 2, 2);
+                    robot.Drive.RunLine(float.Parse((part[1])), speed, acceleration);
+                    
                     break;
                 case "TrackTurnLeft":
                     robot.Drive.RunTurn(float.Parse((part[1])), speed, acceleration);
@@ -75,17 +102,16 @@ namespace CommandServer
                     robot.Drive.RunTurn(float.Parse((part[1]))*-1, speed, acceleration);
                     break;
                 case "TrackArcLeft":
-                    robot.Drive.RunArcLeft(float.Parse((part[1])), float.Parse((part[1])), speed, acceleration);
+                    robot.Drive.RunArcLeft(float.Parse((part[1])), float.Parse((part[2])), speed, acceleration);
                 break;
                 case "TrackArcRight":
-                    robot.Drive.RunArcRight(float.Parse((part[1])), float.Parse((part[1])), speed, acceleration);
+                    robot.Drive.RunArcRight(float.Parse((part[1])), float.Parse((part[2])), speed, acceleration);
                     break;
-                case "Start":
-                    Console.WriteLine("Case 1");
+                case "Stop":
+                    Console.WriteLine("Fahrt beendet");
                     break;
 
                 default:
-                    Console.WriteLine("Default case");
                     break;
             }
 
